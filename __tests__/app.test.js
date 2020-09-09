@@ -22,6 +22,17 @@ describe('postgreSQL-models routes', () => {
     });
 
   });
+  it('finds a guitar by ID via GET', async() => {
+    const searchedGuitars = await Guitar.insert({
+      name: 'gibson',
+      type: 'guitar',
+      cost: 900
+    });
+      const response = await request(app);
+      .get(`/api/guitars/${searchedGuitars}`);
+
+
+  });
 
 
 
