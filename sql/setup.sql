@@ -2,6 +2,7 @@ DROP TABLE IF EXISTS beers;
 DROP TABLE IF EXISTS guitars;
 DROP TABLE IF EXISTS shoes;
 DROP TABLE IF EXISTS cars;
+DROP TABLE IF EXISTS bicycles;
 
 CREATE TABLE beers (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -28,6 +29,13 @@ CREATE TABLE cars (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     name TEXT NOT NULL,
     type TEXT CHECK (type = ANY('{car, truck, SUV}')),
+    cost INT CHECK (cost > 0)
+);
+
+CREATE TABLE bicycles (
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    brand TEXT NOT NULL,
+    type TEXT CHECK (type = ANY('{mountain, road, bmx}')),
     cost INT CHECK (cost > 0)
 );
 
