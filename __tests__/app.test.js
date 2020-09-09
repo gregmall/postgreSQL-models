@@ -28,13 +28,36 @@ describe('postgreSQL-models routes', () => {
   //     type: 'guitar',
   //     cost: 900
   //   });
-  //     const response = await request(app);
-  //     .get(`/api/guitars/${searchedGuitars}`);
+  //   const response = await request(app)
+  //     .get(`/api/guitars/${searchedGuitars.id}`);
+
+  //   expect(response.body).toEqual({
+  //     id: searchedGuitars.id,
+  //     name: 'gibson',
+  //     type: 'guitar',
+  //     cost: 900
+  //   });
 
 
   // });
 
+  it('deletes a guitar by id with DELETE', async() => {
+    const createdGuitar = await Guitar.insert({
+      name: 'gibson',
+      type: 'guitar',
+      cost: 900
+    });
+    const response = await request(app)
+      .delete(`/api/guitars/${createdGuitar.id}`);
 
+    expect(response.body).toEqual({
+      id: createdGuitar.id,
+      name: 'gibson',
+      type: 'guitar',
+      cost: 900
+
+    });
+  });
 
 
 
